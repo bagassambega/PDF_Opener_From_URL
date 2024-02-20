@@ -16,19 +16,33 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
     PDFView pdfView;
-//    String pdfurl = findViewById(R.id.input_url).toString();
-    String pdfurl = "https://faculty.kfupm.edu.sa/ics/alfy/files/teaching/ics431/slides/ch5r_CPU-Scheduling.pdf";
+    String pdfurl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pdfView = findViewById(R.id.idPDFView);
-        new RetrievePDFfromUrl().execute(pdfurl);
+
+
+
+        Button submitURL = findViewById(R.id.submit_url);
+        EditText urlInput = findViewById(R.id.input_url);
+
+        submitURL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pdfurl = urlInput.getText().toString();
+                pdfView = findViewById(R.id.idPDFView);
+                new RetrievePDFfromUrl().execute(pdfurl);
+            }
+        });
     }
 
     class RetrievePDFfromUrl extends AsyncTask<String, Void, InputStream> {
