@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PDF URL</string>
+    <string name="input_url">Input URL</string>
+    <string name="submit">Submit</string>
+</resources>
